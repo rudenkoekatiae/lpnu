@@ -1,0 +1,7 @@
+python -m venv lab1
+.\lab1\Scripts\activate
+pip list
+pip install requests
+python request_example.py
+deactivate
+python request_example.py
