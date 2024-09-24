@@ -1,24 +1,19 @@
 A = list(map(int, input("Enter the first sequence of integers: ").split()))
 B = list(map(int, input("Enter the second sequence of integers: ").split()))
+length = 0
 common_elements = []
 
-count_A = {}
-count_B = {}
+for i in range(len(A)):
+    for j in range(len(B)):
+        elements = []
+        x = i
+        y = j
+        while x < len(A) and y < len(B) and A[x] == B[y]:
+            elements.append(A[x])
+            x += 1
+            y += 1
+        if len(elements) > length:
+            length = len(elements)
+            common_elements = elements
 
-for x in A:
-    if x in count_A:
-        count_A[x] += 1
-    else:
-        count_A[x] = 1
-
-for x in B:
-    if x in count_B:
-        count_B[x] += 1
-    else:
-        count_B[x] = 1
-
-for key in count_A:
-    if key in count_B:
-         common_elements.extend([key] * min(count_A[key], count_B[key]))
-
-print(len(common_elements))
+print(length)
