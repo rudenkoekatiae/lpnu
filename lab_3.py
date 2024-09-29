@@ -3,6 +3,8 @@ B = list(map(int, input("Enter the second sequence of integers: ").split()))
 length = 0
 common_elements = []
 
+common_elements_1 = None
+
 for i in range(len(A)):
     for j in range(len(B)):
         elements = []
@@ -16,4 +18,12 @@ for i in range(len(A)):
             length = len(elements)
             common_elements = elements
 
-print(length)
+            if common_elements_1 is None:
+                common_elements_1 = elements
+
+print("Longest common subsequence length:", length)
+
+if common_elements_1:
+    print("First common subsequence length:", len(common_elements_1))
+else:
+    print("No common subsequence found.")
