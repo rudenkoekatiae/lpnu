@@ -8,18 +8,14 @@ class Park:
 
     def __str__(self):
         return (f"Park info:\n"
-                f" (Name: {self.name})\n"
                 f" (Address: {self.get_address()})\n"
                 f" (Length of bicycle lanes: {self.get_length_of_bicycle_lanes()})\n"
-                f" (Ticket price: {self.get_ticket_price()})\n"
-                f" (Visitors: {self.visitors})")
+                f" (Ticket price: {self.get_ticket_price()})\n")
 
     def __repr__(self):
-        return (f"Park(name='{self.name}', "
-                f"address='{self.get_address()}', "
+        return (f"address='{self.get_address()}', "
                 f"length_of_bicycle_lanes={self.get_length_of_bicycle_lanes()}, "
-                f"ticket_price={self.get_ticket_price()}, "
-                f"visitors={self.visitors})")
+                f"ticket_price={self.get_ticket_price()}, ")
 
     def get_address(self):
         return self.__address
