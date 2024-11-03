@@ -31,11 +31,11 @@ def main():
     gin = BasicDrink("Gin", 650, 1300, 0.2, 39)
     red_wine = BasicDrink("Red wine", 490, 760, 0.3, 16)
     rose_wine = BasicDrink("Rose wine", 490, 760, 0.3, 14)
-    white_wine = BasicDrink("White wine", 470, 760, 0.3, 16)
-    rose_sparkling_wine = BasicDrink("Rose sparkling wine", 480, 760, 0.3, 12)
+    white_wine = BasicDrink("White wine", 490, 760, 0.3, 16)
+    rose_sparkling_wine = BasicDrink("Rose sparkling wine", 490, 760, 0.3, 12)
     white_sparkling_wine = BasicDrink("White sparkling wine", 490, 760, 0.3, 14)
     beer = BasicDrink("Beer", 120, 300, 0.7, 7)
-    zhyvchyk = BasicDrink("Zhyvchyk", 40, 90, 0.3, 0)
+    zhyvchyk = BasicDrink("Zhyvchyk", 40, 150, 0.3, 0)
 
     lemon = Additional("Lemon", 5)
     ice = Additional("Ice", 5)
@@ -181,8 +181,7 @@ def main():
     berry_fizz.add_additionals(mint)
 
     minty_green = Cocktail("Minty Green", 140)
-    minty_green.add_basic_drinks(water, 0.2)
-    minty_green.add_basic_drinks(sparkle_water, 0.2)
+    minty_green.add_basic_drinks(sprite, 0.2)
     minty_green.add_additionals(lemon_fresh)
     minty_green.add_additionals(mint)
     minty_green.add_additionals(ice)
@@ -198,6 +197,32 @@ def main():
     playfulness.add_additionals(mint)
     playfulness.add_additionals(lemon_fresh)
 
+    refreshing_citrus = Cocktail("Refreshing Citrus", 150)
+    refreshing_citrus.add_basic_drinks(orange_juice, 0.25)
+    refreshing_citrus.add_basic_drinks(lemonade, 0.25)
+    refreshing_citrus.add_additionals(ice)
+    refreshing_citrus.add_additionals(mint)
+
+    tropical_fruit_fizz = Cocktail("Tropical Fruit Fizz", 160)
+    tropical_fruit_fizz.add_basic_drinks(peach_juice, 0.2)
+    tropical_fruit_fizz.add_basic_drinks(apple_juice, 0.2)
+    tropical_fruit_fizz.add_basic_drinks(sparkle_water, 0.25)
+    tropical_fruit_fizz.add_additionals(coconut)
+    tropical_fruit_fizz.add_additionals(ice)
+
+    berry_delight = Cocktail("Berry Delight", 140)
+    berry_delight.add_basic_drinks(grape_juice, 0.25)
+    berry_delight.add_basic_drinks(apple_juice, 0.2)
+    berry_delight.add_basic_drinks(sprite, 0.2)
+    berry_delight.add_additionals(cocktails_cherry)
+    berry_delight.add_additionals(ice)
+
+    peach_paradise = Cocktail("Peach Paradise", 130)
+    peach_paradise.add_basic_drinks(peach_juice, 0.3)
+    peach_paradise.add_basic_drinks(sparkle_water, 0.3)
+    peach_paradise.add_additionals(lemon)
+    peach_paradise.add_additionals(ice)
+
 
 
     katia = Guest(
@@ -205,18 +230,30 @@ def main():
         disliked_drinks=["Beer", "Cognac", "Bourbon"],
         drink_limits={
             AlcoholType.NON_ALCOHOLIC: 2,
-            AlcoholType.LOW_ALCOHOLIC: 3,
-            AlcoholType.ALCOHOLIC: 1,
-            AlcoholType.STRONG_ALCOHOLIC: 3
+            AlcoholType.LOW_ALCOHOLIC: 0,
+            AlcoholType.ALCOHOLIC: 0,
+            AlcoholType.STRONG_ALCOHOLIC: 1
+        },
+        cocktail_limits={
+            AlcoholType.NON_ALCOHOLIC: 3,
+            AlcoholType.LOW_ALCOHOLIC: 1,
+            AlcoholType.ALCOHOLIC: 2,
+            AlcoholType.STRONG_ALCOHOLIC: 2
         }
     )
     victoria = Guest(
         id=1, name="Victoria", age=19, city="Lviv", phone_number="12347777", gender=Gender.FEMALE,
         disliked_drinks=["Beer", "Tequila", "Apple juice"],
         drink_limits={
-            AlcoholType.NON_ALCOHOLIC: 3,
-            AlcoholType.LOW_ALCOHOLIC: 3,
+            AlcoholType.NON_ALCOHOLIC: 2,
+            AlcoholType.LOW_ALCOHOLIC: 1,
             AlcoholType.ALCOHOLIC: 2,
+            AlcoholType.STRONG_ALCOHOLIC: 1
+        },
+        cocktail_limits={
+            AlcoholType.NON_ALCOHOLIC: 1,
+            AlcoholType.LOW_ALCOHOLIC: 0,
+            AlcoholType.ALCOHOLIC: 1,
             AlcoholType.STRONG_ALCOHOLIC: 2
         }
     )
@@ -224,8 +261,14 @@ def main():
         id=2, name="Andriy", age=20, city="Kyiv", phone_number="12345678", gender=Gender.MALE,
         disliked_drinks=["Vodka", "Rum"],
         drink_limits={
-            AlcoholType.NON_ALCOHOLIC: 5,
-            AlcoholType.LOW_ALCOHOLIC: 4,
+            AlcoholType.NON_ALCOHOLIC: 2,
+            AlcoholType.LOW_ALCOHOLIC: 1,
+            AlcoholType.ALCOHOLIC: 0,
+            AlcoholType.STRONG_ALCOHOLIC: 0
+        },
+        cocktail_limits={
+            AlcoholType.NON_ALCOHOLIC: 3,
+            AlcoholType.LOW_ALCOHOLIC: 2,
             AlcoholType.ALCOHOLIC: 2,
             AlcoholType.STRONG_ALCOHOLIC: 2
         }
@@ -234,8 +277,14 @@ def main():
         id=3, name="Adam", age=20, city="NYC", phone_number="0258631468", gender=Gender.MALE,
         disliked_drinks=["Vodka", "Rum"],
         drink_limits={
-            AlcoholType.NON_ALCOHOLIC: 5,
-            AlcoholType.LOW_ALCOHOLIC: 4,
+            AlcoholType.NON_ALCOHOLIC: 4,
+            AlcoholType.LOW_ALCOHOLIC: 0,
+            AlcoholType.ALCOHOLIC: 1,
+            AlcoholType.STRONG_ALCOHOLIC: 2
+        },
+        cocktail_limits={
+            AlcoholType.NON_ALCOHOLIC: 1,
+            AlcoholType.LOW_ALCOHOLIC: 3,
             AlcoholType.ALCOHOLIC: 2,
             AlcoholType.STRONG_ALCOHOLIC: 2
         }
@@ -245,18 +294,30 @@ def main():
         id=4, name="Jung Ho", age=18, city="Seoul", phone_number="6158631452", gender=Gender.NON_BINARY,
         disliked_drinks=["Zhyvchyk", "Rum"],
         drink_limits={
-            AlcoholType.NON_ALCOHOLIC: 7,
-            AlcoholType.LOW_ALCOHOLIC: 3,
+            AlcoholType.NON_ALCOHOLIC: 2,
+            AlcoholType.LOW_ALCOHOLIC: 1,
+            AlcoholType.ALCOHOLIC: 1,
+            AlcoholType.STRONG_ALCOHOLIC: 0
+        },
+        cocktail_limits={
+            AlcoholType.NON_ALCOHOLIC: 2,
+            AlcoholType.LOW_ALCOHOLIC: 2,
             AlcoholType.ALCOHOLIC: 1,
             AlcoholType.STRONG_ALCOHOLIC: 0
         }
     )
 
     sophia = Guest(
-        4, "Sophia", 16, "NYC", "9877765420", Gender.FEMALE,
+        5, "Sophia", 16, "NYC", "9877765420", Gender.FEMALE,
         disliked_drinks=["Coke", "Lemonade",],
         drink_limits={
-            AlcoholType.NON_ALCOHOLIC: 8,
+            AlcoholType.NON_ALCOHOLIC: 9,
+            AlcoholType.LOW_ALCOHOLIC: 0,
+            AlcoholType.ALCOHOLIC: 0,
+            AlcoholType.STRONG_ALCOHOLIC: 0
+        },
+        cocktail_limits={
+            AlcoholType.NON_ALCOHOLIC: 0,
             AlcoholType.LOW_ALCOHOLIC: 0,
             AlcoholType.ALCOHOLIC: 0,
             AlcoholType.STRONG_ALCOHOLIC: 0
@@ -268,26 +329,44 @@ def main():
         disliked_drinks=["Jagermeister", "Aperol", "Whiskey"],
         drink_limits={
             AlcoholType.NON_ALCOHOLIC: 2,
-            AlcoholType.LOW_ALCOHOLIC: 2,
+            AlcoholType.LOW_ALCOHOLIC: 0,
             AlcoholType.ALCOHOLIC: 2,
             AlcoholType.STRONG_ALCOHOLIC: 1
+        },
+        cocktail_limits={
+            AlcoholType.NON_ALCOHOLIC: 0,
+            AlcoholType.LOW_ALCOHOLIC: 2,
+            AlcoholType.ALCOHOLIC: 1,
+            AlcoholType.STRONG_ALCOHOLIC: 0
         }
     )
     alex = Guest(
         7, "Alex", 26, "Florence", "7771112102", Gender.NON_BINARY,
         disliked_drinks=["Peach juice", "Rose wine"],
         drink_limits={
-            AlcoholType.NON_ALCOHOLIC: 4,
-            AlcoholType.LOW_ALCOHOLIC: 2,
-            AlcoholType.ALCOHOLIC: 3,
+            AlcoholType.NON_ALCOHOLIC: 1,
+            AlcoholType.LOW_ALCOHOLIC: 1,
+            AlcoholType.ALCOHOLIC: 2,
             AlcoholType.STRONG_ALCOHOLIC: 0
+        },
+        cocktail_limits={
+            AlcoholType.NON_ALCOHOLIC: 0,
+            AlcoholType.LOW_ALCOHOLIC: 1,
+            AlcoholType.ALCOHOLIC: 1,
+            AlcoholType.STRONG_ALCOHOLIC: 1
         }
     )
     hae_soo = Guest(
         8, "Hae Soo", 17, "Seoul", "9568451230", Gender.MALE, 
         disliked_drinks=["Orange juice", "Sparkling water"],
         drink_limits={
-            AlcoholType.NON_ALCOHOLIC: 5,
+            AlcoholType.NON_ALCOHOLIC: 3,
+            AlcoholType.LOW_ALCOHOLIC: 0,
+            AlcoholType.ALCOHOLIC: 0,
+            AlcoholType.STRONG_ALCOHOLIC: 0
+        },
+        cocktail_limits={
+            AlcoholType.NON_ALCOHOLIC: 2,
             AlcoholType.LOW_ALCOHOLIC: 0,
             AlcoholType.ALCOHOLIC: 0,
             AlcoholType.STRONG_ALCOHOLIC: 0
@@ -298,7 +377,13 @@ def main():
         9, "Stacy", 15, "Paris", "1237890456", Gender.FEMALE,
         disliked_drinks=["Zhyvchyk", "Peach juice"],
         drink_limits={
-            AlcoholType.NON_ALCOHOLIC: 5,
+            AlcoholType.NON_ALCOHOLIC: 2,
+            AlcoholType.LOW_ALCOHOLIC: 0,
+            AlcoholType.ALCOHOLIC: 0,
+            AlcoholType.STRONG_ALCOHOLIC: 0
+        },
+        cocktail_limits={
+            AlcoholType.NON_ALCOHOLIC: 4,
             AlcoholType.LOW_ALCOHOLIC: 0,
             AlcoholType.ALCOHOLIC: 0,
             AlcoholType.STRONG_ALCOHOLIC: 0
@@ -310,36 +395,60 @@ def main():
         disliked_drinks=["Red wine", "Rose sparkling wine", "White sparkling wine"],
         drink_limits={
             AlcoholType.NON_ALCOHOLIC: 2,
+            AlcoholType.LOW_ALCOHOLIC: 0,
+            AlcoholType.ALCOHOLIC: 0,
+            AlcoholType.STRONG_ALCOHOLIC: 2
+        },
+        cocktail_limits={
+            AlcoholType.NON_ALCOHOLIC: 1,
             AlcoholType.LOW_ALCOHOLIC: 2,
             AlcoholType.ALCOHOLIC: 1,
-            AlcoholType.STRONG_ALCOHOLIC: 2
+            AlcoholType.STRONG_ALCOHOLIC: 0
         }
     )
-    victoria = Guest(
-        id=1, name="Victoria", age=19, city="Lviv", phone_number="12347777", gender=Gender.FEMALE,
+    mia = Guest(
+        id=11, name="Mia", age=19, city="Lviv", phone_number="12347777", gender=Gender.FEMALE,
         disliked_drinks=["Beer", "Tequila", "Apple juice"],
         drink_limits={
             AlcoholType.NON_ALCOHOLIC: 3,
             AlcoholType.LOW_ALCOHOLIC: 3,
             AlcoholType.ALCOHOLIC: 2,
             AlcoholType.STRONG_ALCOHOLIC: 2
+        },
+        cocktail_limits={
+            AlcoholType.NON_ALCOHOLIC: 0,
+            AlcoholType.LOW_ALCOHOLIC: 0,
+            AlcoholType.ALCOHOLIC: 0,
+            AlcoholType.STRONG_ALCOHOLIC: 0
         }
     )
     ava = Guest(
-        11, "Ava", 15, "Paris", "1020304050", Gender.FEMALE,
+        12, "Ava", 15, "Paris", "1020304050", Gender.FEMALE,
         disliked_drinks=["Water", "Sprite"],
         drink_limits={
-            AlcoholType.NON_ALCOHOLIC: 9,
+            AlcoholType.NON_ALCOHOLIC: 7,
+            AlcoholType.LOW_ALCOHOLIC: 0,
+            AlcoholType.ALCOHOLIC: 0,
+            AlcoholType.STRONG_ALCOHOLIC: 0
+        },
+        cocktail_limits={
+            AlcoholType.NON_ALCOHOLIC: 2,
             AlcoholType.LOW_ALCOHOLIC: 0,
             AlcoholType.ALCOHOLIC: 0,
             AlcoholType.STRONG_ALCOHOLIC: 0
         }
     )
     henry = Guest(
-        12, "Henry", 17, "Lviv", "8070904060", Gender.MALE,
+        13, "Henry", 17, "Lviv", "8070904060", Gender.MALE,
         disliked_drinks=["Sprite", "Orange juice"],
         drink_limits={
             AlcoholType.NON_ALCOHOLIC: 3,
+            AlcoholType.LOW_ALCOHOLIC: 0,
+            AlcoholType.ALCOHOLIC: 0,
+            AlcoholType.STRONG_ALCOHOLIC: 0
+        },
+        cocktail_limits={
+            AlcoholType.NON_ALCOHOLIC: 1,
             AlcoholType.LOW_ALCOHOLIC: 0,
             AlcoholType.ALCOHOLIC: 0,
             AlcoholType.STRONG_ALCOHOLIC: 0
@@ -347,10 +456,16 @@ def main():
     )  
 
     riley = Guest(
-        13, "Riley", 16, "Lviv", "1222222222", Gender.NON_BINARY,
+        14, "Riley", 16, "Lviv", "1222222222", Gender.NON_BINARY,
         disliked_drinks=["Zhyvchyk", "Tonic water", "Lemonade"],
         drink_limits={
-            AlcoholType.NON_ALCOHOLIC: 7,
+            AlcoholType.NON_ALCOHOLIC: 4,
+            AlcoholType.LOW_ALCOHOLIC: 0,
+            AlcoholType.ALCOHOLIC: 0,
+            AlcoholType.STRONG_ALCOHOLIC: 0
+        },
+        cocktail_limits={
+            AlcoholType.NON_ALCOHOLIC: 3,
             AlcoholType.LOW_ALCOHOLIC: 0,
             AlcoholType.ALCOHOLIC: 0,
             AlcoholType.STRONG_ALCOHOLIC: 0
@@ -358,9 +473,15 @@ def main():
     )
 
     will = Guest(
-        14, "Will", 27, "Madrid", "8888552233", Gender.MALE,
+        15, "Will", 27, "Madrid", "8888552233", Gender.MALE,
         disliked_drinks=["Coke", "Vodka",],
         drink_limits={
+            AlcoholType.NON_ALCOHOLIC: 0,
+            AlcoholType.LOW_ALCOHOLIC: 0,
+            AlcoholType.ALCOHOLIC: 0,
+            AlcoholType.STRONG_ALCOHOLIC: 0
+        },
+        cocktail_limits={
             AlcoholType.NON_ALCOHOLIC: 2,
             AlcoholType.LOW_ALCOHOLIC: 2,
             AlcoholType.ALCOHOLIC: 2,
@@ -369,50 +490,91 @@ def main():
     )
     
     olivia = Guest(
-        15, "Olivia", 24, "London", "1063788573", Gender.FEMALE,
+        16, "Olivia", 24, "London", "1063788573", Gender.FEMALE,
         disliked_drinks=["Jagermeister", "Aperol", "Whiskey"],
         drink_limits={
             AlcoholType.NON_ALCOHOLIC: 2,
             AlcoholType.LOW_ALCOHOLIC: 0,
             AlcoholType.ALCOHOLIC: 2,
-            AlcoholType.STRONG_ALCOHOLIC: 3
+            AlcoholType.STRONG_ALCOHOLIC: 1
+        },
+        cocktail_limits={
+            AlcoholType.NON_ALCOHOLIC: 1,
+            AlcoholType.LOW_ALCOHOLIC: 2,
+            AlcoholType.ALCOHOLIC: 0,
+            AlcoholType.STRONG_ALCOHOLIC: 0
         }
     )
-    mia = Guest(
-        16, "Mia", 16, "NYC", "9877765425", Gender.FEMALE,
+    dany = Guest(
+        17, "Dany", 16, "NYC", "9877765425", Gender.FEMALE,
         disliked_drinks=["Peach juice", "Tonic water"],
         drink_limits={
             AlcoholType.NON_ALCOHOLIC: 4,
             AlcoholType.LOW_ALCOHOLIC: 0,
             AlcoholType.ALCOHOLIC: 0,
             AlcoholType.STRONG_ALCOHOLIC: 0
+        },
+        cocktail_limits={
+            AlcoholType.NON_ALCOHOLIC: 2,
+            AlcoholType.LOW_ALCOHOLIC: 0,
+            AlcoholType.ALCOHOLIC: 0,
+            AlcoholType.STRONG_ALCOHOLIC: 0
         }
     )
     taylor = Guest(
-        17, "Taylor", 26, "Florence", "4567823665", Gender.NON_BINARY, 
+        18, "Taylor", 26, "Florence", "4567823665", Gender.NON_BINARY, 
         disliked_drinks=["Orange juice", "Sparkling water"],
         drink_limits={
             AlcoholType.NON_ALCOHOLIC: 0,
             AlcoholType.LOW_ALCOHOLIC: 1,
             AlcoholType.ALCOHOLIC: 0,
-            AlcoholType.STRONG_ALCOHOLIC: 6
+            AlcoholType.STRONG_ALCOHOLIC: 2
+        },
+        cocktail_limits={
+            AlcoholType.NON_ALCOHOLIC: 1,
+            AlcoholType.LOW_ALCOHOLIC: 0,
+            AlcoholType.ALCOHOLIC: 0,
+            AlcoholType.STRONG_ALCOHOLIC: 4
         }
     )  
 
     o_jun = Guest(
-        18, "O jun", 17, "Seoul", "7373494773", Gender.NON_BINARY,
+        19, "O jun", 17, "Seoul", "7373494773", Gender.NON_BINARY,
         disliked_drinks=["Lemonade", "Peach juice"],
         drink_limits={
-            AlcoholType.NON_ALCOHOLIC: 5,
+            AlcoholType.NON_ALCOHOLIC: 2,
+            AlcoholType.LOW_ALCOHOLIC: 0,
+            AlcoholType.ALCOHOLIC: 0,
+            AlcoholType.STRONG_ALCOHOLIC: 0
+        },
+        cocktail_limits={
+            AlcoholType.NON_ALCOHOLIC: 3,
             AlcoholType.LOW_ALCOHOLIC: 0,
             AlcoholType.ALCOHOLIC: 0,
             AlcoholType.STRONG_ALCOHOLIC: 0
         }
     )
 
+    olha = Guest(
+        20, "Olha", 27, "Lviv", "0258461368", Gender.FEMALE,
+        disliked_drinks=["Red wine", "Zhyvchyk"],
+        drink_limits={
+            AlcoholType.NON_ALCOHOLIC: 1,
+            AlcoholType.LOW_ALCOHOLIC: 0,
+            AlcoholType.ALCOHOLIC: 3,
+            AlcoholType.STRONG_ALCOHOLIC: 0
+        },
+        cocktail_limits={
+            AlcoholType.NON_ALCOHOLIC: 0,
+            AlcoholType.LOW_ALCOHOLIC: 0,
+            AlcoholType.ALCOHOLIC: 3,
+            AlcoholType.STRONG_ALCOHOLIC: 0
+        }
+    )
+
     guests = [
         victoria, adam, jung_ho, katia, andriy, sophia, charlie, alex, hae_soo, stacy, elizabeth, ava,
-        henry, riley, will, olivia, mia, taylor, o_jun
+        henry, riley, will, olivia, mia, taylor, o_jun, dany, olha
     ]
 
     drinks = [
@@ -426,7 +588,8 @@ def main():
         vodka_tonic, vodka_tonic, devils_cave, mermaid_tears, spring_garden, bloody_cherry, mellow_breeze,
         spiced_tonic, sunny_rush, chill_bliss, tropical_twist, tropical_punch, berry_twist,
         espresso_bliss, citrus_burst, island_dream, creamy_harmony, refreshing_splash,
-        morning_boost, citrus_joy, berry_fizz, minty_green, apple_beer_mix, playfulness
+        morning_boost, citrus_joy, berry_fizz, minty_green, apple_beer_mix, playfulness, refreshing_citrus, tropical_fruit_fizz,
+        berry_delight, peach_paradise
     ]
  
 
@@ -468,26 +631,31 @@ def main():
     print(f"Owners of lucky numbers: {owners_of_lucky_numbers}")
 
     drink_count = Counter()
-    total_profit = 0
 
     for guest in guests:
         drinks_recommended, cocktails_recommended = guest.get_drink_recommendations(drinks, cocktails)
 
         for drink in drinks_recommended:
             drink_count[drink.name] += 1
-            total_profit += drink.profit()
 
         for cocktail in cocktails_recommended:
             drink_count[cocktail.name] += 1
-            total_profit += cocktail.price - sum(d.cost for d in cocktail.basic_drinks)
 
         print(f"Recommendations for {guest.name}:")
-        print("  Drinks:", [drink.name for drink in drinks_recommended])
+        print("  Drinks:" , [drink.name for drink in drinks_recommended])
         print("  Cocktails:", [cocktail.name for cocktail in cocktails_recommended])
         print()
 
-    print("Total drinks needed for parties:", dict(drink_count))
-    print("Total profit from parties:", total_profit)
+    drinks_needed_new_year, total_profit_new_year = new_year_party.calculate_drinks_needed(drinks, cocktails)
+    drinks_needed_helloween, total_profit_helloween = helloween_party_in_lviv.calculate_drinks_needed(drinks, cocktails)
+
+    print("Total drinks needed for New Year party:", drinks_needed_new_year)
+    print("Total profit from New Year party:", round(total_profit_new_year, 2))
+
+    print("Total drinks needed for Halloween party in Lviv:", drinks_needed_helloween)
+    print("Total profit from Halloween party in Lviv:", round(total_profit_helloween, 2))
+    total_profit = total_profit_helloween + total_profit_new_year
+    print("Total profit from parties:", round(total_profit, 2))
 
 if __name__ == '__main__':
     main()
