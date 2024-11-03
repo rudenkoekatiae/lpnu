@@ -1,11 +1,4 @@
-from classes import Gender
-from classes import AlcoholType
-from classes import Guest
-from classes import Party
-from classes import owners_of_lucky_numbers
-from classes import BasicDrink
-from classes import Additional
-from classes import Cocktail
+from classes import Gender, AlcoholType, Guest, Party, owners_of_lucky_numbers, BasicDrink, Additional, Cocktail
 from collections import Counter
 
 def main():
